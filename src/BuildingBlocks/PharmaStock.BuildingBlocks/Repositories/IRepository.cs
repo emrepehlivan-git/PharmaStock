@@ -1,6 +1,7 @@
 using System.Linq.Expressions;
 using PharmaStock.BuildingBlocks.Common;
 using PharmaStock.BuildingBlocks.Entities;
+using PharmaStock.BuildingBlocks.Specifications;
 
 namespace PharmaStock.BuildingBlocks.Repositories;
 
@@ -21,10 +22,22 @@ public interface IRepository<TAggregate>
         bool asNoTracking = false,
         CancellationToken cancellationToken = default);
 
+    Task<TAggregate> FindAsync(
+        ISpecification<TAggregate> specification,
+        bool asNoTracking = false,
+        CancellationToken cancellationToken = default);
+
     Task<PagedResult<TAggregate>> GetPageAsync(
         int pageNumber,
         int pageSize,
         Expression<Func<TAggregate, bool>>? predicate = null,
+        bool asNoTracking = true,
+        CancellationToken cancellationToken = default);
+
+    Task<PagedResult<TAggregate>> GetPageAsync(
+        int pageNumber,
+        int pageSize,
+        ISpecification<TAggregate> specification,
         bool asNoTracking = true,
         CancellationToken cancellationToken = default);
 

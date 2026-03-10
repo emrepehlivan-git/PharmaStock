@@ -2,6 +2,7 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using PharmaStock.BuildingBlocks.Common;
 using PharmaStock.BuildingBlocks.Entities;
+using PharmaStock.BuildingBlocks.Specifications;
 
 namespace PharmaStock.BuildingBlocks.Repositories;
 
@@ -50,6 +51,18 @@ public abstract class EfRepository<TAggregate, TContext> : IRepository<TAggregat
         return await Query(asNoTracking, predicate).FirstOrDefaultAsync(cancellationToken) ?? throw new EntityNotFoundException($"Entity of type {typeof(TAggregate).Name} with id {predicate} not found.");
     }
 
+    public virtual async Task<TAggregate> FindAsync(
+        ISpecification<TAggregate> specification,
+        bool asNoTracking = false,
+        CancellationToken cancellationToken = default)
+    {
+        IQueryable<TAggregate> query = Query(asNoTracking, specification.Criteria);
+
+        query = query.ApplySpecification(specification);
+
+        return await query.FirstOrDefaultAsync(cancellationToken) ?? throw new EntityNotFoundException($"Entity of type {typeof(TAggregate).Name} matching specification {specification.GetType().Name} not found.");
+    }
+
     public virtual async Task<PagedResult<TAggregate>> GetPageAsync(
         int pageNumber,
         int pageSize,
@@ -61,6 +74,23 @@ public abstract class EfRepository<TAggregate, TContext> : IRepository<TAggregat
         Guard.Positive(pageSize);
 
         IQueryable<TAggregate> query = Query(asNoTracking, predicate);
+
+        return await query.ToPagedResultAsync(pageNumber, pageSize, cancellationToken);
+    }
+
+    public virtual async Task<PagedResult<TAggregate>> GetPageAsync(
+        int pageNumber,
+        int pageSize,
+        ISpecification<TAggregate> specification,
+        bool asNoTracking = true,
+        CancellationToken cancellationToken = default)
+    {
+        Guard.Positive(pageNumber);
+        Guard.Positive(pageSize);
+
+        IQueryable<TAggregate> query = Query(asNoTracking, specification.Criteria);
+
+        query = query.ApplySpecification(specification);
 
         return await query.ToPagedResultAsync(pageNumber, pageSize, cancellationToken);
     }
