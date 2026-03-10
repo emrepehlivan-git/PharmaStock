@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using PharmaStock.BuildingBlocks.Common;
+using PharmaStock.BuildingBlocks.Entities;
 
 namespace PharmaStock.BuildingBlocks.Repositories;
 
