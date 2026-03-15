@@ -1,6 +1,6 @@
 namespace PharmaStock.BuildingBlocks.Common;
 
-public sealed class PagedResult<T>(IReadOnlyList<T> items, int totalCount, int pageNumber, int pageSize)
+public sealed class PagedResult<T>(IReadOnlyList<T> items, int totalCount, int pageNumber = 1, int pageSize = 10)
 {
     public IReadOnlyList<T> Items { get; } = Guard.AgainstNull(items);
     public int TotalCount { get; } = Guard.AgainstNegative(totalCount);
