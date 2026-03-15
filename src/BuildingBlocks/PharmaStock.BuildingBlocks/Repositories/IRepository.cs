@@ -8,10 +8,6 @@ namespace PharmaStock.BuildingBlocks.Repositories;
 public interface IRepository<TAggregate>
     where TAggregate : class, IEntity
 {
-    IQueryable<TAggregate> Query(
-        bool asNoTracking = true,
-        Expression<Func<TAggregate, bool>>? predicate = null);
-
     Task<TAggregate?> GetByIdAsync(
         Guid id,
         bool asNoTracking = false,

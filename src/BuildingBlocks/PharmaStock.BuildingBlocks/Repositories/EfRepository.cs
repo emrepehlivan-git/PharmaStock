@@ -20,7 +20,7 @@ public abstract class EfRepository<TAggregate, TContext> : IRepository<TAggregat
         DbSet = DbContext.Set<TAggregate>();
     }
 
-    public virtual IQueryable<TAggregate> Query(
+    protected virtual IQueryable<TAggregate> Query(
         bool asNoTracking = true,
         Expression<Func<TAggregate, bool>>? predicate = null)
     {
@@ -72,6 +72,7 @@ public abstract class EfRepository<TAggregate, TContext> : IRepository<TAggregat
     {
         Guard.Positive(pageNumber);
         Guard.Positive(pageSize);
+        pageSize = Math.Min(pageSize, PaginationConstants.MaxPageSize);
 
         IQueryable<TAggregate> query = Query(asNoTracking, predicate);
 
@@ -87,6 +88,7 @@ public abstract class EfRepository<TAggregate, TContext> : IRepository<TAggregat
     {
         Guard.Positive(pageNumber);
         Guard.Positive(pageSize);
+        pageSize = Math.Min(pageSize, PaginationConstants.MaxPageSize);
 
         IQueryable<TAggregate> query = Query(asNoTracking, specification.Criteria);
 

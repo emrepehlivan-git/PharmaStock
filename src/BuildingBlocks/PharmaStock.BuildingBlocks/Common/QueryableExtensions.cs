@@ -12,6 +12,7 @@ public static class QueryableExtensions
     {
         Guard.Positive(pageNumber);
         Guard.Positive(pageSize);
+        pageSize = Math.Min(pageSize, PaginationConstants.MaxPageSize);
 
         var totalCount = await source.CountAsync(cancellationToken);
 
@@ -30,6 +31,7 @@ public static class QueryableExtensions
     {
         Guard.Positive(pageNumber);
         Guard.Positive(pageSize);
+        pageSize = Math.Min(pageSize, PaginationConstants.MaxPageSize);
 
         var items = source.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
         var totalCount = source.Count();
