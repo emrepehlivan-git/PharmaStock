@@ -1,10 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using PharmaStock.BuildingBlocks.Entities;
+using PharmaStock.BuildingBlocks.DependencyInjection;
 
 namespace PharmaStock.BuildingBlocks.Audit;
 
-public sealed class AuditableEntitySaveChangesInterceptor(IAuditUserAccessor auditUserAccessor) : SaveChangesInterceptor
+public sealed class AuditableEntitySaveChangesInterceptor(IAuditUserAccessor auditUserAccessor) : SaveChangesInterceptor, IScopedLifetime
 {
     public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
     {
