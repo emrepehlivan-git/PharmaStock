@@ -8,6 +8,13 @@ public abstract class SpecificationBase<T> : ISpecification<T>
 
     public virtual IQueryable<T> ApplyIncludes(IQueryable<T> query) => query;
 
+    public virtual IReadOnlyList<OrderByClause<T>> OrderByClauses => [];
+
+    public virtual bool UseSplitQuery => false;
+
+    protected static OrderByClause<T> OrderBy(Expression<Func<T, object?>> keySelector, bool descending = false) =>
+        new(keySelector, descending);
+
     public ISpecification<T> And(ISpecification<T> other) =>
         new CombinedSpecification<T>(this, other, ExpressionCombiner.And);
 
@@ -27,6 +34,11 @@ internal sealed class CombinedSpecification<T>(
 
     public override IQueryable<T> ApplyIncludes(IQueryable<T> query) =>
         right.ApplyIncludes(left.ApplyIncludes(query));
+
+    public override IReadOnlyList<OrderByClause<T>> OrderByClauses =>
+        left.OrderByClauses.Count > 0 ? left.OrderByClauses : right.OrderByClauses;
+
+    public override bool UseSplitQuery => left.UseSplitQuery || right.UseSplitQuery;
 }
 
 internal sealed class NegatedSpecification<T>(ISpecification<T> inner) : SpecificationBase<T>
@@ -36,4 +48,8 @@ internal sealed class NegatedSpecification<T>(ISpecification<T> inner) : Specifi
 
     public override IQueryable<T> ApplyIncludes(IQueryable<T> query) =>
         inner.ApplyIncludes(query);
+
+    public override IReadOnlyList<OrderByClause<T>> OrderByClauses => inner.OrderByClauses;
+
+    public override bool UseSplitQuery => inner.UseSplitQuery;
 }
