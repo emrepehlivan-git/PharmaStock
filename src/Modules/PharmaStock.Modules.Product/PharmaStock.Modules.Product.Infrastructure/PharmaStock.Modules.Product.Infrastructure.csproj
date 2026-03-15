@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>PharmaStock.Modules.Product.Infrastructure</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <PackageReference Include="EFCore.NamingConventions" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\PharmaStock.BuildingBlocks\PharmaStock.BuildingBlocks.csproj" />
+    <ProjectReference Include="..\PharmaStock.Modules.Product.Application\PharmaStock.Modules.Product.Application.csproj" />
+    <ProjectReference Include="..\PharmaStock.Modules.Product.Domain\PharmaStock.Modules.Product.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
