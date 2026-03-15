@@ -1,3 +1,4 @@
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -5,6 +6,7 @@ using PharmaStock.BuildingBlocks.Audit;
 using PharmaStock.BuildingBlocks.Common;
 using PharmaStock.BuildingBlocks.DependencyInjection;
 using PharmaStock.BuildingBlocks.Repositories;
+using PharmaStock.Modules.Product.Application.Products.Commands.CreateProduct;
 using PharmaStock.Modules.Product.Infrastructure.Persistence;
 
 namespace PharmaStock.Modules.Product.Infrastructure;
@@ -21,6 +23,8 @@ public static class ProductModuleExtensions
                 .AddInterceptors(sp.GetRequiredService<AuditableEntitySaveChangesInterceptor>()));
 
         services.AddScannedServices(typeof(ProductRepository).Assembly);
+        services.AddScoped<IUnitOfWork, EfUnitOfWork<ProductDbContext>>();
+        services.AddValidatorsFromAssembly(typeof(CreateProductValidator).Assembly);
 
         return services;
     }

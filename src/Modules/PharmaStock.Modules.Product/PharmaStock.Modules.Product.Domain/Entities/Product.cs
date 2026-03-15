@@ -27,7 +27,6 @@ public sealed class Product : AuditableEntityBase
     private Product() { }
 
     public static Product Create(
-        Guid id,
         string code,
         string name,
         string? description,
@@ -46,7 +45,6 @@ public sealed class Product : AuditableEntityBase
     {
         var product = new Product
         {
-            Id = id,
             Code = Guard.AgainstNullOrWhiteSpace(code).Trim(),
             Name = Guard.AgainstNullOrWhiteSpace(name).Trim(),
             Description = description?.Trim(),
@@ -72,6 +70,6 @@ public sealed class Product : AuditableEntityBase
     private void EnsureColdChainTemperatureLimits()
     {
         if (ColdChainRequired && (MinimumTemperatureCelsius is null || MaximumTemperatureCelsius is null))
-            throw new DomainException(ProductConstants.Messages.ColdChainRequiresTemperatureLimits);
+            throw new DomainRuleException(ProductConstants.Messages.ColdChainRequiresTemperatureLimits);
     }
 }
