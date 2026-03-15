@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PharmaStock.BuildingBlocks.Common;
+using PharmaStock.BuildingBlocks.DependencyInjection;
 using PharmaStock.BuildingBlocks.Repositories;
 using PharmaStock.Modules.Product.Application.Products;
 using ProductEntity = PharmaStock.Modules.Product.Domain.Entities.Product;
@@ -7,7 +8,7 @@ using ProductEntity = PharmaStock.Modules.Product.Domain.Entities.Product;
 namespace PharmaStock.Modules.Product.Infrastructure.Persistence;
 
 public sealed class ProductRepository(ProductDbContext context)
-    : EfRepository<ProductEntity, ProductDbContext>(context), IProductRepository
+    : EfRepository<ProductEntity, ProductDbContext>(context), IProductRepository, IScopedLifetime
 {
     public async Task<bool> ExistsByCodeAsync(string code, Guid? excludeId, CancellationToken cancellationToken = default)
     {
