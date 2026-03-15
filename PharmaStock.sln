@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmaStock.Modules.Product
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmaStock.Modules.Product.Infrastructure", "src\Modules\PharmaStock.Modules.Product\PharmaStock.Modules.Product.Infrastructure\PharmaStock.Modules.Product.Infrastructure.csproj", "{E147DCF3-ABFA-6E24-52A5-D7FD48A5C563}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E247DCF0-ABFA-6E24-52A5-D7FD48A5C570}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmaStock.Tests.Common", "tests\PharmaStock.Tests.Common\PharmaStock.Tests.Common.csproj", "{E247DCF1-ABFA-6E24-52A5-D7FD48A5C571}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +97,10 @@ Global
 		{E147DCF3-ABFA-6E24-52A5-D7FD48A5C563}.Release|x64.Build.0 = Release|Any CPU
 		{E147DCF3-ABFA-6E24-52A5-D7FD48A5C563}.Release|x86.ActiveCfg = Release|Any CPU
 		{E147DCF3-ABFA-6E24-52A5-D7FD48A5C563}.Release|x86.Build.0 = Release|Any CPU
+		{E247DCF1-ABFA-6E24-52A5-D7FD48A5C571}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E247DCF1-ABFA-6E24-52A5-D7FD48A5C571}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E247DCF1-ABFA-6E24-52A5-D7FD48A5C571}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E247DCF1-ABFA-6E24-52A5-D7FD48A5C571}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,5 +115,7 @@ Global
 		{E147DCF1-ABFA-6E24-52A5-D7FD48A5C561} = {E147DCF0-ABFA-6E24-52A5-D7FD48A5C560}
 		{E147DCF2-ABFA-6E24-52A5-D7FD48A5C562} = {E147DCF0-ABFA-6E24-52A5-D7FD48A5C560}
 		{E147DCF3-ABFA-6E24-52A5-D7FD48A5C563} = {E147DCF0-ABFA-6E24-52A5-D7FD48A5C560}
+		{E247DCF0-ABFA-6E24-52A5-D7FD48A5C570} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{E247DCF1-ABFA-6E24-52A5-D7FD48A5C571} = {E247DCF0-ABFA-6E24-52A5-D7FD48A5C570}
 	EndGlobalSection
 EndGlobal
