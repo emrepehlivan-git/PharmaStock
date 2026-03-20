@@ -1,4 +1,4 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
@@ -26,6 +26,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E247DCF0-ABFA-6E24-52A5-D7FD48A5C570}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmaStock.Tests.Common", "tests\PharmaStock.Tests.Common\PharmaStock.Tests.Common.csproj", "{E247DCF1-ABFA-6E24-52A5-D7FD48A5C571}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PharmaStock.Modules.Product", "PharmaStock.Modules.Product", "{EC4E5A9D-ED33-0003-BF75-D86F9A110966}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmaStock.Modules.Product.Presentation", "src\Modules\PharmaStock.Modules.Product\PharmaStock.Modules.Product.Presentation\PharmaStock.Modules.Product.Presentation.csproj", "{C37BFF30-AB62-4D47-BB44-94F41443AFEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +105,18 @@ Global
 		{E247DCF1-ABFA-6E24-52A5-D7FD48A5C571}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E247DCF1-ABFA-6E24-52A5-D7FD48A5C571}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E247DCF1-ABFA-6E24-52A5-D7FD48A5C571}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C37BFF30-AB62-4D47-BB44-94F41443AFEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C37BFF30-AB62-4D47-BB44-94F41443AFEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C37BFF30-AB62-4D47-BB44-94F41443AFEE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C37BFF30-AB62-4D47-BB44-94F41443AFEE}.Debug|x64.Build.0 = Debug|Any CPU
+		{C37BFF30-AB62-4D47-BB44-94F41443AFEE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C37BFF30-AB62-4D47-BB44-94F41443AFEE}.Debug|x86.Build.0 = Debug|Any CPU
+		{C37BFF30-AB62-4D47-BB44-94F41443AFEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C37BFF30-AB62-4D47-BB44-94F41443AFEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C37BFF30-AB62-4D47-BB44-94F41443AFEE}.Release|x64.ActiveCfg = Release|Any CPU
+		{C37BFF30-AB62-4D47-BB44-94F41443AFEE}.Release|x64.Build.0 = Release|Any CPU
+		{C37BFF30-AB62-4D47-BB44-94F41443AFEE}.Release|x86.ActiveCfg = Release|Any CPU
+		{C37BFF30-AB62-4D47-BB44-94F41443AFEE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,5 +133,7 @@ Global
 		{E147DCF3-ABFA-6E24-52A5-D7FD48A5C563} = {E147DCF0-ABFA-6E24-52A5-D7FD48A5C560}
 		{E247DCF0-ABFA-6E24-52A5-D7FD48A5C570} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{E247DCF1-ABFA-6E24-52A5-D7FD48A5C571} = {E247DCF0-ABFA-6E24-52A5-D7FD48A5C570}
+		{EC4E5A9D-ED33-0003-BF75-D86F9A110966} = {EC447DCF-ABFA-6E24-52A5-D7FD48A5C558}
+		{C37BFF30-AB62-4D47-BB44-94F41443AFEE} = {EC4E5A9D-ED33-0003-BF75-D86F9A110966}
 	EndGlobalSection
 EndGlobal

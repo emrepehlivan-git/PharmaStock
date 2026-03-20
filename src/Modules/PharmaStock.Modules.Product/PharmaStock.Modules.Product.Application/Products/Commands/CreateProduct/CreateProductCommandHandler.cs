@@ -1,6 +1,7 @@
 using Mediator;
 using PharmaStock.BuildingBlocks.Common;
 using PharmaStock.BuildingBlocks.Repositories;
+using PharmaStock.BuildingBlocks.Validation;
 using PharmaStock.Modules.Product.Domain.Constants;
 using ProductEntity = PharmaStock.Modules.Product.Domain.Entities.Product;
 

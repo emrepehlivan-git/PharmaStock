@@ -11,9 +11,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Mediator.Abstractions" />
+    <PackageReference Include="Mediator.SourceGenerator" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\BuildingBlocks\PharmaStock.BuildingBlocks\PharmaStock.BuildingBlocks.csproj" />
     <ProjectReference Include="..\..\Modules\PharmaStock.Modules.Product\PharmaStock.Modules.Product.Application\PharmaStock.Modules.Product.Application.csproj" />
     <ProjectReference Include="..\..\Modules\PharmaStock.Modules.Product\PharmaStock.Modules.Product.Infrastructure\PharmaStock.Modules.Product.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Modules\PharmaStock.Modules.Product\PharmaStock.Modules.Product.Presentation\PharmaStock.Modules.Product.Presentation.csproj" />
   </ItemGroup>
 
 </Project>

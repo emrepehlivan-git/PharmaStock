@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>PharmaStock.Modules.Product.Presentation</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PharmaStock.Modules.Product.Application\PharmaStock.Modules.Product.Application.csproj" />
+    <ProjectReference Include="..\PharmaStock.Modules.Product.Infrastructure\PharmaStock.Modules.Product.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\PharmaStock.BuildingBlocks\PharmaStock.BuildingBlocks.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" />
+  </ItemGroup>
+
+</Project>
+
