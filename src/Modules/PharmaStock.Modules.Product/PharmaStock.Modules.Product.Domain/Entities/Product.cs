@@ -103,6 +103,11 @@ public sealed class Product : AuditableEntityBase
         EnsureColdChainTemperatureLimits();
     }
 
+    public void SetActive(bool isActive)
+    {
+        IsActive = isActive;
+    }
+
     private void EnsureColdChainTemperatureLimits()
     {
         if (ColdChainRequired && (MinimumTemperatureCelsius is null || MaximumTemperatureCelsius is null))
