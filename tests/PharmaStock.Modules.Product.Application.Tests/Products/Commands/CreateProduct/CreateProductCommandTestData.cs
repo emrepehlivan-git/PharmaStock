@@ -74,6 +74,7 @@ internal static class CreateProductCommandTestData
                 ColdChainRequired: _coldChainRequired,
                 MinimumTemperatureCelsius: _minimumTemperatureCelsius,
                 MaximumTemperatureCelsius: _maximumTemperatureCelsius,
-                CriticalStockLevel: _criticalStockLevel);
+                CriticalStockLevel: _criticalStockLevel,
+                Reason: null);
     }
 }

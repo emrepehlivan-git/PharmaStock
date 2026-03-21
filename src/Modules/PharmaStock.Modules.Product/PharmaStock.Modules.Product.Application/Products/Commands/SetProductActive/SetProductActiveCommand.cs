@@ -4,4 +4,4 @@ using PharmaStock.BuildingBlocks.Validation;
 
 namespace PharmaStock.Modules.Product.Application.Products.Commands.SetProductActive;
 
-public sealed record SetProductActiveCommand(Guid Id, bool IsActive) : IRequest<Result>, IValidatableRequest;
+public sealed record SetProductActiveCommand(Guid Id, bool IsActive, string? Reason) : IRequest<Result>, IValidatableRequest;

@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddAuditUserAccessor();
 builder.Services.AddAuditableEntityInterceptor();
 
 builder.Services.AddMediator(options =>

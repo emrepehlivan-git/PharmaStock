@@ -37,7 +37,8 @@ internal static class CreateProductEndpoint
             ColdChainRequired: request.ColdChainRequired,
             MinimumTemperatureCelsius: request.MinimumTemperatureCelsius,
             MaximumTemperatureCelsius: request.MaximumTemperatureCelsius,
-            CriticalStockLevel: request.CriticalStockLevel);
+            CriticalStockLevel: request.CriticalStockLevel,
+            Reason: request.Reason);
 
         Result<Guid> result = await mediator.Send(command, cancellationToken);
         if (result.IsSuccess)

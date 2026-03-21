@@ -1,6 +1,8 @@
 using Mediator;
 using NSubstitute;
+using PharmaStock.BuildingBlocks.Audit;
 using PharmaStock.BuildingBlocks.Common;
+using PharmaStock.BuildingBlocks.Entities;
 using PharmaStock.BuildingBlocks.Repositories;
 using PharmaStock.Modules.Product.Application.Products;
 using PharmaStock.Modules.Product.Application.Products.Commands.UpdateProduct;
@@ -16,9 +18,11 @@ public sealed class UpdateProductCommandHandlerTests
 {
     private readonly IProductRepository _productRepository = Substitute.For<IProductRepository>();
     private readonly IUnitOfWork _unitOfWork = Substitute.For<IUnitOfWork>();
+    private readonly IComplianceAuditLogWriter _complianceAuditLogWriter = Substitute.For<IComplianceAuditLogWriter>();
+    private readonly IAuditUserAccessor _auditUserAccessor = Substitute.For<IAuditUserAccessor>();
 
     protected override IRequestHandler<UpdateProductCommand, Result> CreateHandler() =>
-        new UpdateProductCommandHandler(_productRepository, _unitOfWork);
+        new UpdateProductCommandHandler(_productRepository, _unitOfWork, _complianceAuditLogWriter, _auditUserAccessor);
 
     [Fact]
     public async Task Handle_WhenProductNotFound_ReturnsFailure()
@@ -32,6 +36,8 @@ public sealed class UpdateProductCommandHandlerTests
 
         result.Should().BeFailure(ProductConstants.Messages.ProductNotFound);
         await _productRepository.DidNotReceive().UpdateAsync(Arg.Any<ProductEntity>(), Arg.Any<CancellationToken>());
+        await _complianceAuditLogWriter.DidNotReceive()
+            .WriteAsync(Arg.Any<ComplianceAuditLogEntry>(), Arg.Any<CancellationToken>());
         await _unitOfWork.DidNotReceive().SaveChangesAsync(Arg.Any<CancellationToken>());
     }
 
@@ -54,6 +60,8 @@ public sealed class UpdateProductCommandHandlerTests
 
         result.Should().BeFailure(ProductConstants.Messages.ProductCodeAlreadyExists);
         await _productRepository.DidNotReceive().UpdateAsync(Arg.Any<ProductEntity>(), Arg.Any<CancellationToken>());
+        await _complianceAuditLogWriter.DidNotReceive()
+            .WriteAsync(Arg.Any<ComplianceAuditLogEntry>(), Arg.Any<CancellationToken>());
         await _unitOfWork.DidNotReceive().SaveChangesAsync(Arg.Any<CancellationToken>());
     }
 
@@ -75,6 +83,10 @@ public sealed class UpdateProductCommandHandlerTests
         var result = await CreateHandler().Handle(cmd, Ct);
 
         result.Should().BeSuccess();
+        await _complianceAuditLogWriter.Received(1).WriteAsync(
+            Arg.Is<ComplianceAuditLogEntry>(e =>
+                e.OperationType == ProductConstants.Compliance.OperationType.Updated),
+            Arg.Any<CancellationToken>());
         await _productRepository.Received(1).UpdateAsync(
             Arg.Is<ProductEntity>(p => p.Id == product.Id && p.Name == "Güncel ad"),
             Arg.Any<CancellationToken>());

@@ -19,4 +19,5 @@ public sealed record CreateProductCommand(
     bool ColdChainRequired,
     decimal? MinimumTemperatureCelsius,
     decimal? MaximumTemperatureCelsius,
-    decimal? CriticalStockLevel) : IRequest<Result<Guid>>, IValidatableRequest;
+    decimal? CriticalStockLevel,
+    string? Reason) : IRequest<Result<Guid>>, IValidatableRequest;

@@ -1,4 +1,5 @@
 using FluentValidation;
+using PharmaStock.BuildingBlocks.Audit;
 using PharmaStock.Modules.Product.Domain.Constants;
 
 namespace PharmaStock.Modules.Product.Application.Products.Commands.CreateProduct;
@@ -10,6 +11,10 @@ public sealed class CreateProductValidator : AbstractValidator<CreateProductComm
         RuleFor(x => x.Code)
             .NotEmpty()
             .MaximumLength(ProductConstants.MaxLength.Code);
+
+        RuleFor(x => x.Reason)
+            .MaximumLength(ComplianceAuditLogConstants.MaxLength.Reason)
+            .When(x => x.Reason is not null);
 
         RuleFor(x => x.Name)
             .NotEmpty()

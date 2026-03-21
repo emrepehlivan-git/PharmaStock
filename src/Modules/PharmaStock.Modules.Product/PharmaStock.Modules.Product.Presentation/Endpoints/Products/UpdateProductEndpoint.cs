@@ -40,7 +40,8 @@ internal static class UpdateProductEndpoint
             ColdChainRequired: request.ColdChainRequired,
             MinimumTemperatureCelsius: request.MinimumTemperatureCelsius,
             MaximumTemperatureCelsius: request.MaximumTemperatureCelsius,
-            CriticalStockLevel: request.CriticalStockLevel);
+            CriticalStockLevel: request.CriticalStockLevel,
+            Reason: request.Reason);
 
         Result result = await mediator.Send(command, cancellationToken);
         if (result.IsSuccess)

@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\BuildingBlocks\PharmaStock.BuildingBlocks\PharmaStock.BuildingBlocks.csproj" />
     <ProjectReference Include="..\..\src\Modules\PharmaStock.Modules.Product\PharmaStock.Modules.Product.Application\PharmaStock.Modules.Product.Application.csproj" />
     <ProjectReference Include="..\PharmaStock.Tests.Common\PharmaStock.Tests.Common.csproj" />
   </ItemGroup>

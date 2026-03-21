@@ -24,7 +24,7 @@ internal static class SetProductActiveEndpoint
         IMediator mediator,
         CancellationToken cancellationToken)
     {
-        SetProductActiveCommand command = new(id, request.IsActive);
+        SetProductActiveCommand command = new(id, request.IsActive, request.Reason);
 
         Result result = await mediator.Send(command, cancellationToken);
         if (result.IsSuccess)

@@ -15,5 +15,6 @@ public sealed record CreateProductRequest(
     bool ColdChainRequired,
     decimal? MinimumTemperatureCelsius,
     decimal? MaximumTemperatureCelsius,
-    decimal? CriticalStockLevel);
+    decimal? CriticalStockLevel,
+    string? Reason);
 

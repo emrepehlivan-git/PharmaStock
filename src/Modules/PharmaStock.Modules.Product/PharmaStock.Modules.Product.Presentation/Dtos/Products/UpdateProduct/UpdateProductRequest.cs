@@ -15,4 +15,5 @@ public sealed record UpdateProductRequest(
     bool ColdChainRequired,
     decimal? MinimumTemperatureCelsius,
     decimal? MaximumTemperatureCelsius,
-    decimal? CriticalStockLevel);
+    decimal? CriticalStockLevel,
+    string? Reason);

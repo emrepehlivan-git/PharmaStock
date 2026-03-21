@@ -30,4 +30,16 @@ public static class ProductConstants
         public const string PageSizeOutOfRange =
             "Page size must be between 1 and {0}.";
     }
+
+    public static class Compliance
+    {
+        public const string AggregateType = "Product";
+
+        public static class OperationType
+        {
+            public const string Created = "Product.Created";
+            public const string Updated = "Product.Updated";
+            public const string ActivationChanged = "Product.ActivationChanged";
+        }
+    }
 }

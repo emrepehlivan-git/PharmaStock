@@ -23,5 +23,5 @@ internal static class SetProductActiveCommandTestData
             maximumTemperatureCelsius: null,
             criticalStockLevel: null);
 
-    public static SetProductActiveCommand With(Guid id, bool isActive) => new(id, isActive);
+    public static SetProductActiveCommand With(Guid id, bool isActive) => new(id, isActive, null);
 }

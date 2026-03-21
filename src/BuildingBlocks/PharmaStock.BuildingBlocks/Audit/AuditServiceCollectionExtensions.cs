@@ -9,4 +9,10 @@ public static class AuditServiceCollectionExtensions
         services.AddScoped<AuditableEntitySaveChangesInterceptor>();
         return services;
     }
+
+    public static IServiceCollection AddAuditUserAccessor(this IServiceCollection services)
+    {
+        services.AddScoped<IAuditUserAccessor, HttpContextAuditUserAccessor>();
+        return services;
+    }
 }
