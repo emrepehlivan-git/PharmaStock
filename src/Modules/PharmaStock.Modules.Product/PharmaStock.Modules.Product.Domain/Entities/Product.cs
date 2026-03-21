@@ -45,7 +45,7 @@ public sealed class Product : AuditableEntityBase
     {
         var product = new Product
         {
-            Code = Guard.AgainstNullOrWhiteSpace(code).Trim(),
+            Code = ProductCodeNormalizer.Normalize(code),
             Name = Guard.AgainstNullOrWhiteSpace(name).Trim(),
             Description = description?.Trim(),
             Barcode = barcode?.Trim(),
@@ -84,7 +84,7 @@ public sealed class Product : AuditableEntityBase
         decimal? maximumTemperatureCelsius,
         decimal? criticalStockLevel)
     {
-        Code = Guard.AgainstNullOrWhiteSpace(code).Trim();
+        Code = ProductCodeNormalizer.Normalize(code);
         Name = Guard.AgainstNullOrWhiteSpace(name).Trim();
         Description = description?.Trim();
         Barcode = barcode?.Trim();
