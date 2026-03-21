@@ -122,8 +122,8 @@ public static class Guard
         int value,
         [CallerArgumentExpression(nameof(value))] string? parameterName = null)
     {
-        if (value >= 0)
-            throw new ArgumentOutOfRangeException(parameterName, value, "Value cannot be positive.");
+        if (value < 0)
+            throw new ArgumentOutOfRangeException(parameterName, value, "Value cannot be negative.");
 
         return value;
     }
@@ -132,8 +132,8 @@ public static class Guard
         decimal value,
         [CallerArgumentExpression(nameof(value))] string? parameterName = null)
     {
-        if (value >= 0)
-            throw new ArgumentOutOfRangeException(parameterName, value, "Value cannot be positive.");
+        if (value < 0)
+            throw new ArgumentOutOfRangeException(parameterName, value, "Value cannot be negative.");
 
         return value;
     }
