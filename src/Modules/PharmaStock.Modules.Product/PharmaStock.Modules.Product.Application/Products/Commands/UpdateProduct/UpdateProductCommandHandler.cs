@@ -4,19 +4,23 @@ using PharmaStock.BuildingBlocks.Repositories;
 using PharmaStock.Modules.Product.Domain.Constants;
 using ProductEntity = PharmaStock.Modules.Product.Domain.Entities.Product;
 
-namespace PharmaStock.Modules.Product.Application.Products.Commands.CreateProduct;
+namespace PharmaStock.Modules.Product.Application.Products.Commands.UpdateProduct;
 
-public sealed class CreateProductCommandHandler(
+public sealed class UpdateProductCommandHandler(
     IProductRepository productRepository,
-    IUnitOfWork unitOfWork) : IRequestHandler<CreateProductCommand, Result<Guid>>
+    IUnitOfWork unitOfWork) : IRequestHandler<UpdateProductCommand, Result>
 {
-    public async ValueTask<Result<Guid>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+    public async ValueTask<Result> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
     {
-        bool codeExists = await productRepository.ExistsByCodeAsync(request.Code, null, cancellationToken);
-        if (codeExists)
-            return Result<Guid>.Failure(ProductConstants.Messages.ProductCodeAlreadyExists);
+        ProductEntity? product = await productRepository.GetByIdAsync(request.Id, asNoTracking: false, cancellationToken);
+        if (product is null)
+            return Result.Failure(ProductConstants.Messages.ProductNotFound);
 
-        var product = ProductEntity.Create(
+        bool codeExists = await productRepository.ExistsByCodeAsync(request.Code, request.Id, cancellationToken);
+        if (codeExists)
+            return Result.Failure(ProductConstants.Messages.ProductCodeAlreadyExists);
+
+        product.Update(
             code: request.Code,
             name: request.Name,
             description: request.Description,
@@ -33,9 +37,9 @@ public sealed class CreateProductCommandHandler(
             maximumTemperatureCelsius: request.MaximumTemperatureCelsius,
             criticalStockLevel: request.CriticalStockLevel);
 
-        await productRepository.AddAsync(product, cancellationToken);
+        await productRepository.UpdateAsync(product, cancellationToken);
         await unitOfWork.SaveChangesAsync(cancellationToken);
 
-        return Result<Guid>.Success(product.Id);
+        return Result.Success();
     }
 }

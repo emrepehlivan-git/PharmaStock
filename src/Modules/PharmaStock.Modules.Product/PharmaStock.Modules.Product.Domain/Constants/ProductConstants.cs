@@ -20,6 +20,8 @@ public static class ProductConstants
             "Cold chain products must define temperature limits.";
 
         public const string ProductCodeAlreadyExists = "Product with the same code already exists.";
+
+        public const string ProductNotFound = "Product was not found.";
         public const string InvalidTemperatureRange =
             "Minimum temperature ({0}°C) must be less than or equal to maximum temperature ({1}°C).";
     }

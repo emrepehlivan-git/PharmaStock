@@ -67,6 +67,42 @@ public sealed class Product : AuditableEntityBase
         return product;
     }
 
+    public void Update(
+        string code,
+        string name,
+        string? description,
+        string? barcode,
+        string unitOfMeasurement,
+        string? category,
+        string? manufacturer,
+        string? brand,
+        bool batchTrackingEnabled,
+        bool expirationTrackingEnabled,
+        bool serialTrackingEnabled,
+        bool coldChainRequired,
+        decimal? minimumTemperatureCelsius,
+        decimal? maximumTemperatureCelsius,
+        decimal? criticalStockLevel)
+    {
+        Code = Guard.AgainstNullOrWhiteSpace(code).Trim();
+        Name = Guard.AgainstNullOrWhiteSpace(name).Trim();
+        Description = description?.Trim();
+        Barcode = barcode?.Trim();
+        UnitOfMeasurement = Guard.AgainstNullOrWhiteSpace(unitOfMeasurement).Trim();
+        Category = category?.Trim();
+        Manufacturer = manufacturer?.Trim();
+        Brand = brand?.Trim();
+        BatchTrackingEnabled = batchTrackingEnabled;
+        ExpirationTrackingEnabled = expirationTrackingEnabled;
+        SerialTrackingEnabled = serialTrackingEnabled;
+        ColdChainRequired = coldChainRequired;
+        MinimumTemperatureCelsius = minimumTemperatureCelsius;
+        MaximumTemperatureCelsius = maximumTemperatureCelsius;
+        CriticalStockLevel = criticalStockLevel;
+
+        EnsureColdChainTemperatureLimits();
+    }
+
     private void EnsureColdChainTemperatureLimits()
     {
         if (ColdChainRequired && (MinimumTemperatureCelsius is null || MaximumTemperatureCelsius is null))

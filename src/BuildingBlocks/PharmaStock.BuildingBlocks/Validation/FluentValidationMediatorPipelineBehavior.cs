@@ -8,7 +8,7 @@ namespace PharmaStock.BuildingBlocks.Validation;
 public sealed class FluentValidationMediatorPipelineBehavior<TMessage, TResponse>(
     IServiceProvider serviceProvider)
     : IPipelineBehavior<TMessage, TResponse>
-    where TMessage : IMessage
+    where TMessage : IMessage, IValidatableRequest
 {
     public async ValueTask<TResponse> Handle(
         TMessage message,

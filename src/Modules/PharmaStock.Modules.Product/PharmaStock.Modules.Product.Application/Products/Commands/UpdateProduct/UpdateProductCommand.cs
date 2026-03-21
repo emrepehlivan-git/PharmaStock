@@ -2,9 +2,10 @@ using Mediator;
 using PharmaStock.BuildingBlocks.Common;
 using PharmaStock.BuildingBlocks.Validation;
 
-namespace PharmaStock.Modules.Product.Application.Products.Commands.CreateProduct;
+namespace PharmaStock.Modules.Product.Application.Products.Commands.UpdateProduct;
 
-public sealed record CreateProductCommand(
+public sealed record UpdateProductCommand(
+    Guid Id,
     string Code,
     string Name,
     string? Description,
@@ -19,4 +20,4 @@ public sealed record CreateProductCommand(
     bool ColdChainRequired,
     decimal? MinimumTemperatureCelsius,
     decimal? MaximumTemperatureCelsius,
-    decimal? CriticalStockLevel) : IRequest<Result<Guid>>, IValidatableRequest;
+    decimal? CriticalStockLevel) : IRequest<Result>, IValidatableRequest;
