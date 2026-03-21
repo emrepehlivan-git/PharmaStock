@@ -1,5 +1,4 @@
 using PharmaStock.BuildingBlocks.Audit;
-using Mediator;
 using PharmaStock.BuildingBlocks.Validation;
 using PharmaStock.Modules.Product.Presentation;
 using PharmaStock.Modules.Product.Application.Products.Commands.CreateProduct;

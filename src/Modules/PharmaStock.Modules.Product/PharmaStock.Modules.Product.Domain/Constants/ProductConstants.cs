@@ -24,5 +24,10 @@ public static class ProductConstants
         public const string ProductNotFound = "Product was not found.";
         public const string InvalidTemperatureRange =
             "Minimum temperature ({0}°C) must be less than or equal to maximum temperature ({1}°C).";
+
+        public const string PageNumberMustBeAtLeastOne = "Page number must be at least 1.";
+
+        public const string PageSizeOutOfRange =
+            "Page size must be between 1 and {0}.";
     }
 }

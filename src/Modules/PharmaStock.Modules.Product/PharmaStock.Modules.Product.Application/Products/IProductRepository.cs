@@ -6,4 +6,6 @@ namespace PharmaStock.Modules.Product.Application.Products;
 public interface IProductRepository : IRepository<ProductEntity>
 {
     Task<bool> ExistsByCodeAsync(string code, Guid? excludeId, CancellationToken cancellationToken = default);
+
+    Task<ProductEntity?> GetByCodeAsync(string code, bool asNoTracking = true, CancellationToken cancellationToken = default);
 }

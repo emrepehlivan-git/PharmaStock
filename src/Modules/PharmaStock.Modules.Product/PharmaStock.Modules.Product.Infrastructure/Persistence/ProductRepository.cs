@@ -18,4 +18,10 @@ public sealed class ProductRepository(ProductDbContext context)
             query = query.Where(p => p.Id != excludeId.Value);
         return await query.AnyAsync(cancellationToken);
     }
+
+    public async Task<ProductEntity?> GetByCodeAsync(string code, bool asNoTracking = true, CancellationToken cancellationToken = default)
+    {
+        Guard.AgainstNullOrWhiteSpace(code);
+        return await Query(asNoTracking, p => p.Code == code.Trim()).FirstOrDefaultAsync(cancellationToken);
+    }
 }
