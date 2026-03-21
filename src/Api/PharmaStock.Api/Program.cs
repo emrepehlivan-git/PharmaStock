@@ -1,7 +1,6 @@
 using PharmaStock.BuildingBlocks.Audit;
 using Mediator;
 using PharmaStock.BuildingBlocks.Validation;
-using PharmaStock.Modules.Product.Infrastructure;
 using PharmaStock.Modules.Product.Presentation;
 using PharmaStock.Modules.Product.Application.Products.Commands.CreateProduct;
 
@@ -18,7 +17,6 @@ builder.Services.AddMediator(options =>
 });
 
 builder.Services.AddProductModule(builder.Configuration);
-builder.Services.AddProductPresentation();
 
 var app = builder.Build();
 

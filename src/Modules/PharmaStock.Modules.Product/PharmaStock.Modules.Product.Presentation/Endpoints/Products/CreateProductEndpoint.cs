@@ -1,22 +1,20 @@
 using Mediator;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using PharmaStock.BuildingBlocks.Common;
 using PharmaStock.Modules.Product.Application.Products.Commands.CreateProduct;
 using PharmaStock.Modules.Product.Presentation.Dtos.Products.CreateProduct;
 
-namespace PharmaStock.Modules.Product.Presentation;
+namespace PharmaStock.Modules.Product.Presentation.Endpoints.Products;
 
-public static class ProductEndpoints
+internal static class CreateProductEndpoint
 {
-    public static IEndpointRouteBuilder MapProductEndpoints(this IEndpointRouteBuilder endpoints)
+    internal static void Map(IEndpointRouteBuilder endpoints)
     {
         endpoints.MapPost("/api/products", HandleCreateProductAsync)
             .WithName("CreateProduct")
             .WithTags("Products");
-
-        return endpoints;
     }
 
     private static async Task<IResult> HandleCreateProductAsync(

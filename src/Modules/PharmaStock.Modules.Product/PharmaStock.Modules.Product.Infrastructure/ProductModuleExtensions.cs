@@ -13,7 +13,7 @@ namespace PharmaStock.Modules.Product.Infrastructure;
 
 public static class ProductModuleExtensions
 {
-    public static IServiceCollection AddProductModule(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddProductInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         string connectionString = Guard.AgainstNullOrWhiteSpace(configuration.GetConnectionString("DefaultConnection"));
         services.AddDbContext<ProductDbContext>((sp, options) =>

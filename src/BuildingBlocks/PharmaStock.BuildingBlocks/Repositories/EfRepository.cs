@@ -2,6 +2,7 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using PharmaStock.BuildingBlocks.Common;
 using PharmaStock.BuildingBlocks.Entities;
+using PharmaStock.BuildingBlocks.Exceptions;
 using PharmaStock.BuildingBlocks.Specifications;
 
 namespace PharmaStock.BuildingBlocks.Repositories;
