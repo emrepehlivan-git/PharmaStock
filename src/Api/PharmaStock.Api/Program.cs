@@ -1,4 +1,5 @@
 using PharmaStock.BuildingBlocks.Audit;
+using PharmaStock.BuildingBlocks.Common;
 using PharmaStock.BuildingBlocks.Validation;
 using PharmaStock.Modules.Product.Presentation;
 using PharmaStock.Modules.Product.Application.Products.Commands.CreateProduct;
@@ -23,7 +24,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 
 app.UseHttpsRedirection();
-app.MapProductEndpoints();
+app.MapEndpointsFromAssembly(typeof(ProductModuleServiceCollectionExtensions).Assembly);
 
 
 
